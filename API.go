@@ -8,12 +8,32 @@ import (
 	"net/http"
 )
 
-// GetSession takes user/pass and returns a valid session
-func GetSession(user string, pass string, agent string) (Session, error) {
+// GetSessionKey takes user/pass and returns a valid session
+func GetSessionKey(user string, pass string, agent string) (string, error) {
 
 	xmlBytes, err := getXML(
 		fmt.Sprintf("http://xmldata.qrz.com/xml/1.33/?username=%s;password=%s;agent=%s",
 			user, pass, agent))
+	if err != nil {
+		return "", err
+	}
+
+	var database QRZDatabase
+	xml.Unmarshal(xmlBytes, &database)
+
+	newSession := database.Session
+
+	if newSession.Error != "" {
+		return "", errors.New(newSession.Error)
+	}
+
+	return newSession.Key, nil
+}
+
+// GetSession creates a session object from just a key
+func GetSession(key string, agent string) (Session, error) {
+
+	xmlBytes, err := getXML(fmt.Sprintf("http://xmldata.qrz.com/xml/1.33/?s=%s;agent=%s", key, agent))
 	if err != nil {
 		return Session{}, err
 	}
@@ -21,24 +41,18 @@ func GetSession(user string, pass string, agent string) (Session, error) {
 	var database QRZDatabase
 	xml.Unmarshal(xmlBytes, &database)
 
-	newSession := database.Session
-	newSession.user = user
-	newSession.pass = pass
-
-	if newSession.Error != "" {
-		return newSession, errors.New(newSession.Error)
+	if database.Session.Error != "" {
+		return database.Session, errors.New(database.Session.Error)
 	}
 
-	return newSession, nil
+	return database.Session, nil
 }
 
 // GetCallsign takes a callsign and returns the QRZ information on that
 // callsign.
-func (CurrentSession *Session) GetCallsign(callsign string) (Callsign, error) {
+func GetCallsign(key string, callsign string, agent string) (Callsign, error) {
 
-	xmlBytes, err := getXML(
-		fmt.Sprintf("http://xmldata.qrz.com/xml/1.33/?s=%s;callsign=%s",
-			CurrentSession.Key, callsign))
+	xmlBytes, err := getXML(fmt.Sprintf("http://xmldata.qrz.com/xml/1.33/?s=%s;callsign=%s;agent=%s", key, callsign, agent))
 	if err != nil {
 		return Callsign{}, err
 	}
@@ -54,15 +68,13 @@ func (CurrentSession *Session) GetCallsign(callsign string) (Callsign, error) {
 
 // GetDXCC takes a dxcc id and returns the QRZ information on that
 // region.
-func (CurrentSession *Session) GetDXCC(dxcc string) (DXCC, error) {
+func GetDXCC(key string, dxcc string, agent string) (DXCC, error) {
 
 	if dxcc == "all" {
 		return DXCC{}, errors.New("get all DXCC not implemented in this function")
 	}
 
-	xmlBytes, err := getXML(
-		fmt.Sprintf("http://xmldata.qrz.com/xml/1.33/?s=%s;dxcc=%s",
-			CurrentSession.Key, dxcc))
+	xmlBytes, err := getXML(fmt.Sprintf("http://xmldata.qrz.com/xml/1.33/?s=%s;dxcc=%s;agent=%s", key, dxcc, agent))
 	if err != nil {
 		return DXCC{}, err
 	}

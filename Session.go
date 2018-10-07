@@ -8,7 +8,6 @@ type Session struct {
 	GMTime  string `xml:"GMTime"`  // Time stamp for this message
 	Message string `xml:"Message"` // An informational message for the user
 	Error   string `xml:"Error"`   // XML system error message
-	user    string // Username (Generally Callsign), private variable
-	pass    string // Password, private variable
+	Remark  string `xml:"Remark"`  // Remarks are sometimes helpful diagnostic messages from QRZ.com
 	agent   string // Agent ID, private variable
 }
