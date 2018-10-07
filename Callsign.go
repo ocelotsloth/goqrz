@@ -17,7 +17,7 @@ type Callsign struct {
 	Lat              string `xml:"lat"`       // lattitude of address (signed decimal) S < 0 > N
 	Lon              string `xml:"lon"`       // longitude of address (signed decimal) W < 0 > E
 	GridLocator      string `xml:"grid"`      // grid locator
-	Country          string `xml:"county"`    // county name (USA)
+	County           string `xml:"county"`    // county name (USA)
 	FIPSIdentifier   string `xml:"fips"`      // FIPS county identifier (USA)
 	DXCCCountryName  string `xml:"land"`      // DXCC country name of the callsign
 	EffectiveDate    string `xml:"efdate"`    // license effective date (USA)
