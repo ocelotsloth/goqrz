@@ -7,7 +7,7 @@ GoQRZ is a simple Go Library which implements the QRZ.com [specification](https:
 First, import the library:
 
 ```go
-import "github.com/ocelotsloth/goqrz"
+import "git.sr.ht/~ocelotsloth/goqrz"
 ```
 
 Next, create a new session, providing a QRZ.com username and password as well as a User Agent which identifies your program to the API service:
@@ -37,14 +37,14 @@ There are two ways to install and use the CLI; compiling from source and downloa
 The CLI can be compiled from source by running the following:
 
 ```shell
-go get github.com/ocelotsloth/goqrz/goqrz
+go get git.sr.ht/~ocelotsloth/goqrz/goqrz
 ```
 
 Provided your `GOPATH` is configured correctly you should now be able to run `goqrz` from the command line.
 
 #### Precompiled Binaries
 
-Look at the [releases](https://github.com/ocelotsloth/goqrz/releases) on this GitHub page for downloadable binaries. This utility can be cross-compiled to most any popular archetecture in use. Open an issue if you need an additional archetecture added to the list of precompiled binaries.
+Look at the [refs](https://git.sr.ht/~ocelotsloth/goqrz/refs) on this Sourcehut page for downloadable binaries. This utility can be cross-compiled to most any popular archetecture in use. Open an issue if you need an additional archetecture added to the list of precompiled binaries.
 
 ### CLI Usage
 

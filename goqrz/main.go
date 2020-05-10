@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/ocelotsloth/goqrz"
+	"git.sr.ht/~ocelotsloth/goqrz"
 	"github.com/urfave/cli"
 )
 
