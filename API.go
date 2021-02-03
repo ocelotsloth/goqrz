@@ -12,7 +12,7 @@ import (
 func GetSessionKey(user string, pass string, agent string) (string, error) {
 
 	xmlBytes, err := getXML(
-		fmt.Sprintf("http://xmldata.qrz.com/xml/1.34/?username=%s;password=%s;agent=%s",
+		fmt.Sprintf("https://xmldata.qrz.com/xml/1.34/?username=%s;password=%s;agent=%s",
 			user, pass, agent))
 	if err != nil {
 		return "", err
@@ -33,7 +33,7 @@ func GetSessionKey(user string, pass string, agent string) (string, error) {
 // GetSession creates a session object from just a key
 func GetSession(key string, agent string) (Session, error) {
 
-	xmlBytes, err := getXML(fmt.Sprintf("http://xmldata.qrz.com/xml/1.34/?s=%s;agent=%s", key, agent))
+	xmlBytes, err := getXML(fmt.Sprintf("https://xmldata.qrz.com/xml/1.34/?s=%s;agent=%s", key, agent))
 	if err != nil {
 		return Session{}, err
 	}
@@ -52,7 +52,7 @@ func GetSession(key string, agent string) (Session, error) {
 // callsign.
 func GetCallsign(key string, callsign string, agent string) (Callsign, error) {
 
-	xmlBytes, err := getXML(fmt.Sprintf("http://xmldata.qrz.com/xml/1.34/?s=%s;callsign=%s;agent=%s", key, callsign, agent))
+	xmlBytes, err := getXML(fmt.Sprintf("https://xmldata.qrz.com/xml/1.34/?s=%s;callsign=%s;agent=%s", key, callsign, agent))
 	if err != nil {
 		return Callsign{}, err
 	}
@@ -74,7 +74,7 @@ func GetDXCC(key string, dxcc string, agent string) (DXCC, error) {
 		return DXCC{}, errors.New("get all DXCC not implemented in this function")
 	}
 
-	xmlBytes, err := getXML(fmt.Sprintf("http://xmldata.qrz.com/xml/1.34/?s=%s;dxcc=%s;agent=%s", key, dxcc, agent))
+	xmlBytes, err := getXML(fmt.Sprintf("https://xmldata.qrz.com/xml/1.34/?s=%s;dxcc=%s;agent=%s", key, dxcc, agent))
 	if err != nil {
 		return DXCC{}, err
 	}

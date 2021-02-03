@@ -49,7 +49,7 @@ Look at the [releases](https://github.com/ocelotsloth/goqrz/releases) page on gi
 
 ### CLI Usage
 
-Before pulling data from the XML API, it is important to log in. **Ensure 2 factor authentication is enabled on your account before using this utility!** QRZ.com does not have encryption enabled on their XML endpoint, so it is imparative that this password be unique to QRZ.com. Be sure to change it frequently as well. This library does its best to remain secure by not storing your username or password between calls. Instead it provides two methods to store the session key.
+Before pulling data from the XML API, it is important to log in. This library does its best to remain secure by not storing your username or password between calls. Instead it provides two methods to store the session key.
 
 #### Get Session Key
 
