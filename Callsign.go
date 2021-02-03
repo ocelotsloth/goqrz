@@ -49,4 +49,7 @@ type Callsign struct {
 	LOTWAccepted     string `xml:"lotw"`      // Will accept LOTW (0/1 or blank if unknown)
 	IOTADesignator   string `xml:"iota"`      // IOTA Designator (blank if unknown)
 	GeolocSource     string `xml:"geoloc"`    // Describes source of lat/long data
+	AttentionAddress string `xml:"attn"`      // Attention address line, this line should be prepended to the address
+	Nickname         string `xml:"nickname"`  // A different or shortened name used on the air
+	NameFormat       string `xml:"name_fmt"`  // Combined full name and nickname in the format used by QRZ. This fortmat is subject to change.
 }

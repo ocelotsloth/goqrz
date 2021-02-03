@@ -7,7 +7,7 @@ GoQRZ is a simple Go Library which implements the QRZ.com [specification](https:
 First, import the library:
 
 ```go
-import "git.sr.ht/~ocelotsloth/goqrz"
+import "github.com/ocelotsloth/goqrz"
 ```
 
 Next, create a new session, providing a QRZ.com username and password as well as a User Agent which identifies your program to the API service:
